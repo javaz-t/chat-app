@@ -11,7 +11,7 @@ class NewMessages extends StatefulWidget {
 }
 
 class _NewMessagesState extends State<NewMessages> {
-  var _messageController = TextEditingController();
+  final _messageController = TextEditingController();
 
   Future<void> _submitMessage() async {
     final enteredMessage = _messageController.text;
@@ -24,7 +24,7 @@ class _NewMessagesState extends State<NewMessages> {
    //remove keyboard
     // sent to firebase
     final user = FirebaseAuth.instance.currentUser!;
-    final userData = await FirebaseFirestore.instance.collection('users')
+    final userData = await  FirebaseFirestore.instance.collection('users')
         .doc(user.uid).get();
     FirebaseFirestore.instance.collection('chat').add({
       "text": enteredMessage,
